@@ -4,12 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countdown Timer</title>
+    <title>Take Coding Quiz</title>
     <link rel="stylesheet" type="text/css" href="./assets/style.css">
 </head>
 <body>
-    <h1>Countdown:</h1>
-    <p id="count-down"></p>
+    <div class="count-down">
+        <h1>Countdown:</h1>
+        <p id="count-down"></p>
+        <button id="start-button">Start</button>
+    </div>
+    <div class="quiz" >
+        <h3 id="question">A quiz question goes here.</h3>
+        <ul>
+            <li id="choice-a">Choice A</li>
+            <li id="choice-b">Choice B</li>
+            <li id="choice-c">Choice C</li>
+            <li id="choice-d">Choice D</li>
+        </ul>
+    </div>
     <script src="./assets/index.js"></script>
 </body>
 </html>
