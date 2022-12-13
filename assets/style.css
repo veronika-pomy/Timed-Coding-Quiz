@@ -52,3 +52,10 @@ body {
     border-radius: 20px;
     width: 70%;
 }
+#welcome {
+    color: var(--edge);
+}
+li {
+    list-style: none;
+    padding: 5px;
+}
