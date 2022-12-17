@@ -7,3 +7,4 @@ https://stackoverflow.com/questions/17614067/addeventlistener-and-setinterval-fa
 https://stackoverflow.com/questions/42794107/why-does-my-interval-go-faster-the-second-time-i-execute-it-jquery
 - Samples of JS mult choice questions
 https://www.interviewbit.com/javascript-mcq/
+- string manipulation https://stackoverflow.com/questions/3568921/how-to-remove-part-of-a-string
