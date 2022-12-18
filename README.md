@@ -46,7 +46,7 @@ This mock-up demonstrates the message user gets when he/she saves his/hers score
 
 ## Application link
 
-[Check out the Javascript Quiz here!]()
+[Check out the Javascript Quiz here!](https://veronika-pomy.github.io/Timed-Coding-Quiz/)
 
 <p align="right">(<a href="#timed-coding-quiz">back to top</a>)</p>
 
