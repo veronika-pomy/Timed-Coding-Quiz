@@ -9,13 +9,12 @@
 </head>
 <body>
     <div class="count-down">
-        <h1>Countdown:</h1>
-        <p id="count-down"></p>
         <button id="start-button">Start</button>
+        <p id="count-down">60 seconds</p>
     </div>
     <div class="quiz" >
         <div class="message">
-            <h3 id="message">Welcome to the <span id="welcome">Javascript Quiz</span> desiged to test your knowledge of the language's functionality and concepts. You will be given 60 seconds to answer questions. You will score 1 point with each correct answer, 0 if you answer incorrectly. If you answer incorrectly, 10 seconds will be subtracted from your remaining time. You'll be able to save your scores whne you are finished. Good luck!</h3>
+            <h3 id="message">Welcome to the <span id="welcome">Javascript Quiz</span> designed to test your knowledge of the language's functionality and concepts. You will have 60 seconds to answer questions. You will score 1 point with each correct answer and 0 if you answer incorrectly. If you answer incorrectly, 10 seconds will be subtracted from your remaining time. You'll be able to save your score when you are finished. Good luck!</h3>
         </div>
         <div class="mult-choice">
             <ul id="mult-choice">
@@ -28,6 +27,9 @@
                 <li id="choice-d" class="child">
                 </li>
             </ul>
+            <div id="feedback">
+
+            </div>
         </div>
     </div>
     <script src="./assets/index.js"></script>

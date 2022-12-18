@@ -1,14 +1,11 @@
-/* @import url('https://fonts.googleapis.com/css?family=Tangerine|Inconsolata|Droid+Sans');
- */
-
- /* TO FIX: THE SHIFTING OF THE DIV WHEN THE BUTTON IS CLICKED AND TXT APPEARS; dont like the moving of the button when the border dissapears */
-
 /* set repeating variables */
 :root {
     --dark: cornflowerblue;
-    --edge: rgb(46, 8, 90);
+    --edge: rgb(131, 80, 188);
     --light: white;
+    --hover: rgb(153, 117, 187);
     --write: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    --feedback: darkgrey;
 }
 /* general style for page */
 body {
@@ -20,11 +17,15 @@ body {
     align-items: center;
     gap: 50px;
 }
+/* styling the div that contains start button and the timer */
 .count-down {
     font-weight: bold;
     font-size: 1em;
     text-align: center;
     width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 /* style the "start" button */
 #start-button {
@@ -37,12 +38,12 @@ body {
     border-radius: 20px;
     border: 2px solid var(--edge);
 }
-/* use pseudo classes to add style to the "start" button */
-#start-button:hover {
-    border: none;
-}
-#start-button:active {
-    border: 2px solid var(--edge);
+/* use pseudo classes to add style to btns when hovering over them */
+#start-button:hover, 
+.mult-btn:hover,
+.choice-btn:hover {
+    background-color: var(--hover);
+    color: var(--light);
 }
 /* style div containing mult choice questions */
 .quiz {
@@ -51,6 +52,8 @@ body {
     padding: 40px;
     border-radius: 20px;
     width: 70%;
+    height: 50vh;
+    overflow: hidden;
 }
 #welcome {
     color: var(--edge);
@@ -58,4 +61,52 @@ body {
 li {
     list-style: none;
     padding: 5px;
+}
+h3 {
+    text-align: justify;
+}
+/* styling mult choice buttons */
+.mult-btn {
+    background-color: var(--light);
+    color: var(--dark);
+    padding: 15px;
+    width: 30%;
+    border-radius: 15px;
+    border: 1px solid var(--edge);
+    font-size: large;
+    font-weight: bold;
+    text-align: left;
+    max-width: 100%;
+    overflow: hidden;
+}
+/* styling buttons to save user score */
+.choice-btn {
+    background-color: var(--light);
+    color: var(--dark);
+    padding: 5px;
+    width: 10%;
+    border-radius: 15px;
+    border: 1px solid var(--edge);
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+    max-width: 100%;
+    margin: 5px;
+}
+/* style the user input menu */
+.style {
+    background-color: var(--light);
+    color: var(--dark);
+    padding: 5px;
+    width: 30%;
+    border-radius: 15px;
+    border: 1px solid var(--edge);
+    font-size: large;
+    font-weight: bold;
+    text-align: left;
+    max-width: 100%;
+}
+/* style div that will contain feedback on wether the answer was correct or incorrect */
+#feedback {
+    color: var(--feedback);
 }

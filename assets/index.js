@@ -1,7 +1,7 @@
 // create multiple choice questions and define them as objects
 const questionsArr = [
     question1 = {
-        question: "Javascript is an _______ language?",
+        question: "1. Javascript is an _______ language?",
         choiceA: "Object-Oriented",
         choiceB: "Object-Based",
         choiceC: "Procedural",
@@ -9,7 +9,7 @@ const questionsArr = [
         rightAnswer: "Object-Oriented",
     },
     question2 = {
-        question: "Select all keywords that  can be used to define a variable in Javascript?",
+        question: "2. Select all keywords that  can be used to define a variable in Javascript?",
         choiceA: "var",
         choiceB: "let",
         choiceC: "const",
@@ -17,7 +17,7 @@ const questionsArr = [
         rightAnswer: "All of the above",
     },
     question3 = {
-        question: "Select all methods that can be used to access HTML elements using Javascript?",
+        question: "3. Select all methods that can be used to access HTML elements using Javascript?",
         choiceA: "getElementById()",
         choiceB: "querySelector",
         choiceC: "getElementByClassName()",
@@ -25,7 +25,7 @@ const questionsArr = [
         rightAnswer: "All of the above",
     },
     question4 = {
-        question: "Select all ways a datatype can be declared to be a constant type?",
+        question: "4. Select all ways a datatype can be declared to be a constant type?",
         choiceA: "const",
         choiceB: "let",
         choiceC: "var",
@@ -33,7 +33,7 @@ const questionsArr = [
         rightAnswer: "const",
     },
     question5 = {
-        question: "Which of the following methods can be used to display data in the console?",
+        question: "5. Which of the following methods can be used to display data in the console?",
         choiceA: "document.write()",
         choiceB: "window.alert()",
         choiceC: "console.log()",
@@ -41,7 +41,7 @@ const questionsArr = [
         rightAnswer: "console.log()",
     },
     question6 = {
-        question: "Which of the following types represents two values, true and false?",
+        question: "6. Which of the following types represents two values, true and false?",
         choiceA: "bigInt",
         choiceB: "number",
         choiceC: "string",
@@ -49,7 +49,7 @@ const questionsArr = [
         rightAnswer: "boolean",
     },
     question7 = {
-        question: "What keyword is used to check whether a given property is valid or not?",
+        question: "7. What keyword is used to check whether a given property is valid or not?",
         choiceA: "in",
         choiceB: "is in",
         choiceC: "exists",
@@ -57,7 +57,7 @@ const questionsArr = [
         rightAnswer: "in",
     },
     question8 = {
-        question: "What is the use of the <noscript> tag in Javascript?",
+        question: "8. What is the use of the <noscript> tag in Javascript?",
         choiceA: "Clear cookies",
         choiceB: "To display contents by non-Javascript browsers",
         choiceC: "Both A and B",
@@ -81,6 +81,8 @@ const choiceA = document.querySelector("#choice-a");
 const choiceB = document.querySelector("#choice-b"); 
 const choiceC = document.querySelector("#choice-c"); 
 const choiceD = document.querySelector("#choice-d"); 
+// store div that will show if the answer is right or wrong
+const feedbackEl = document.querySelector("#feedback"); 
 
 // start timer at 60 seconds 
 var startSecondsEl = 60;
@@ -90,8 +92,8 @@ var incremetInt = 1000;
 var userScore= 0;
 // define 10 sec penalty for wrong answer
 var penalty = 10;
-// define the objet that will store user's initials and score as a global variable 
-var lastScore = null;
+// define var that will store user's initials and score as a global variable 
+var lastScore;
 // make timer var globally available to be able to stop the timer inside askQuestions () 
 var timer; 
 
@@ -105,11 +107,13 @@ function countDown ( ) {
             clearInterval (timer);
             saveUserScore ( );
         };
+
     },incremetInt);
 };
 
 // function to display and save user score 
 function saveUserScore ( ) {
+    feedbackEl.textContent = "";
     document.querySelector("#count-down").textContent = "Finished!";
     questionEl.textContent = `Your score is ${userScore}`;
     
@@ -121,39 +125,52 @@ function saveUserScore ( ) {
 
     // ask if user wants to save score 
     var askToSave = document.createElement("p");
-    var userNo = document.createElement("button"); 
-    var userYes = document.createElement("button");
     askToSave.textContent = "Would you like to save your score?";
-    userNo.textContent = "No";
-    userYes.textContent = "Yes";
     mainWrapperEl.appendChild(askToSave);
-    mainWrapperEl.appendChild(userNo);
+
+    var userYes = document.createElement("button");
+    userYes.textContent = "Yes";
+    userYes.setAttribute("class", "choice-btn");
     mainWrapperEl.appendChild(userYes);
 
+    var userNo = document.createElement("button"); 
+    userNo.textContent = "No";
+    userNo.setAttribute("class", "choice-btn");
+    mainWrapperEl.appendChild(userNo);
+    
     // if user clicks "Yes" btn, create fields for user to enter initials
     userYes.addEventListener("click", function () {
+        // remove feedback div
+        feedbackEl.textContent = "";
+
         var userInitials = document.createElement("input");
         userInitials.setAttribute("placeholder","Please Enter Your Initials");
+        userInitials.setAttribute("class", "style");
         mainWrapperEl.appendChild(userInitials);
+
         var saveBtn = document.createElement("button");
         saveBtn.textContent = "Save";
+        saveBtn.setAttribute("class", "choice-btn");
         mainWrapperEl.appendChild(saveBtn);
+
+        // if there was a user's score saved before the current game, it will be displayed under new user's entry
+        lastScore = JSON.parse(localStorage.getItem("userScore"));
+        if (lastScore != null) {
+
+            var lastUser = document.createElement("p");
+            lastUser.textContent = `Last User: ${lastScore.user}`;
+            mainWrapperEl.appendChild(lastUser);
+
+            var lastUserScore = document.createElement("p");
+            lastUserScore.textContent = `Last User's Score: ${lastScore.score}`;
+            mainWrapperEl.appendChild(lastUserScore);
+        };
 
         // when user clicks "Save"
         saveBtn.addEventListener("click", function ( ) {
            // check to see if user made an entry, if not - assign "Anonymous" instead of initials 
             if (userInitials.value === "") {
                 userInitials.value = "Anonymous";
-            };
-            // if there was a user's score saved before the game, it will be displayed under new user's entry
-            if (lastScore !== null) {
-                var lastScore = JSON.parse(localStorage.getItem("userScore"));
-                var lastUser = document.createElement("p");
-                lastUser.textContent = `Last User: ${lastScore.user}`;
-                mainWrapperEl.appendChild(lastUser);
-                var lastUserScore = document.createElement("p");
-                lastUserScore.textContent = `Last User's Score: ${lastScore.score}`;
-                mainWrapperEl.appendChild(lastUserScore);
             };
 
             var savedUserScores = {
@@ -164,13 +181,25 @@ function saveUserScore ( ) {
             localStorage.setItem("userScore", JSON.stringify(savedUserScores));
 
             var lastScore = JSON.parse(localStorage.getItem("userScore"));
+            
+            // render most recent user's initials and score
+            var yourName = document.createElement("p");
+            yourName.textContent = `Your Initials: ${savedUserScores.user}`;
+            mainWrapperEl.appendChild(yourName);
+
+            var yourScore = document.createElement("p");
+            yourScore.textContent = `Your Score: ${savedUserScores.score}`;
+            mainWrapperEl.appendChild(yourScore);
         }); 
     });
 
      // if user clicks "No" btn
      userNo.addEventListener("click", function () {
+        //remove feednack div
+        feedbackEl.textContent = "";
+
         var message = document.createElement("p");
-        message.textContent = "Thanks for playing!";
+        message.textContent = "Thanks for taking the quiz!";
         mainWrapperEl.appendChild(message);
     });
 };
@@ -182,6 +211,14 @@ function writeQuestions ( ) {
     const buttonChoiceB = choiceB.innerHTML = `<button>${questionsArr[startIndex].choiceB}</button>`;
     const buttonChoiceC = choiceC.innerHTML = `<button>${questionsArr[startIndex].choiceC}</button>`;
     const buttonChoiceD = choiceD.innerHTML = `<button>${questionsArr[startIndex].choiceD}</button>`;
+    
+    // grab all btns to iterate over 
+    const buttons = document.getElementsByTagName("button");
+
+    // set attributes for each btn to style in css
+   for (index = 1; index < buttons.length; index++) {
+        buttons[index].setAttribute("class","mult-btn");
+    }
 };
 
 // funciton that presents questions to user, validates answeres and counts score
@@ -193,11 +230,11 @@ function askQuestions ( ) {
         if (element.matches("button") === true) {
             if (element.textContent === questionsArr[startIndex].rightAnswer) {
                 userScore++;
-                console.log("correct");
+                feedbackEl.textContent = "correct";
             } else {
                 // decrease current timer time by 10 secs if answer is wrong
                 var timeNow = document.querySelector("#count-down").textContent.split(" ")[0];
-                console.log("wrong");
+                feedbackEl.textContent = "incorrect";
                 var newTime = timeNow - penalty;
                 startSecondsEl = newTime;
             };
